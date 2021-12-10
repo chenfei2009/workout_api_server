@@ -1,0 +1,45 @@
+.article-list {
+  padding: 0 75px;
+  overflow: hidden;
+}
+.article-list .list-item {
+  position: relative;
+  width: calc(50% - 30px);
+  margin: 15px;
+  box-shadow: 2px 2px 3px #e1e1e1;
+}
+.article-list .list-item .cover-wrap {
+  display: block;
+  margin-bottom: 0;
+  width: 100%;
+  height: 240px;
+}
+.article-list .list-item .cover-wrap .glyphicon-picture {
+  color: #eee;
+  font-size: 80px;
+}
+.article-list .list-item .content-wrap {
+  padding: 10px;
+  background-color: #eee;
+}
+.article-list .list-item .content-wrap .content-author {
+  color: orange;
+}
+.article-list .list-item .content-wrap .content-brief {
+  font-size: 14px;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.my-pager {
+  text-align: center;
+}
+.my-pager li {
+  display: inline-block;
+}
+.my-pager .active {
+  color: orange;
+}

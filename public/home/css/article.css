@@ -1,0 +1,36 @@
+.main {
+  padding: 15px 100px;
+  background-color: #f8faf9;
+  min-height: 100vh;
+}
+.article-wrap {
+  padding: 30px 40px 20px;
+  background-color: #fff;
+}
+.article-wrap .author {
+  color: orange;
+}
+.article-wrap .article-content {
+  margin: 20px 0;
+}
+.article-wrap .article-content p {
+  font-size: 14px;
+  line-height: 26px;
+  padding: 8px 0;
+}
+/* 文章评论部分 */
+.article-comment .comment-form {
+  margin-bottom: 40px;
+}
+.article-comment .comment-form h4 {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.article-comment .comment-form .submit-btn {
+  padding: 3px 40px;
+  border: 0px;
+  background-color: #ccc;
+}
+.article-comment .comment-list li {
+  margin: 5px 0;
+}
