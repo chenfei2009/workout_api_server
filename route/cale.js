@@ -11,10 +11,10 @@ const caleRouter = express.Router()
   查询当前日期范围内部位数据
   @params 开始日期 startDate 结束日期 endDate
 */
-caleRouter.get('/', [record.getPartsByCale], (req, res) => {
+caleRouter.get('/', [record.getPartsByCale, record.getVolumesByCale], (req, res) => {
   return res.json({
     meta: { status: 200, msg: 'OK' },
-    data: req.data
+    data: { parts: req.parts, volumes: req.volumes }
   })
 })
 

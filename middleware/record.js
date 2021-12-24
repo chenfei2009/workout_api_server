@@ -102,14 +102,29 @@ module.exports = {
   },
 
   /**
-   * 查询日历对应数据
+   * 查询日历对应部位数据
    */
   getPartsByCale: (req, res, next) => {
     // 获取查询参数
     const { startDate, endDate } = req.query
     // 调用 recordDetailModel 模型中的查询方法
     Record.getPartsByCale(startDate, endDate).then(results => {
-      req.data = results
+      req.parts = results
+      next()
+    }).catch(err => {
+      next(err)
+    })
+  },
+
+  /**
+   * 查询日历对应容量数据
+   */
+   getVolumesByCale: (req, res, next) => {
+    // 获取查询参数
+    const { startDate, endDate } = req.query
+    // 调用 recordDetailModel 模型中的查询方法
+    Record.getVolumesByCale(startDate, endDate).then(results => {
+      req.volumes = results
       next()
     }).catch(err => {
       next(err)

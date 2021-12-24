@@ -136,28 +136,6 @@ module.exports = class Record extends require('./model') {
    * @param {string} startDate 起始日期
    * @param {string} endDate 结束日期
    */
-  static getLastRecord (id, count) {
-    return new Promise((resolve, reject) => {
-      // let sql = `SELECT * FROM record WHERE id = ?`
-      let sql = `SELECT * FROM record WHERE move_id = ? AND count = ?
-      ORDER BY DATE DESC LIMIT 1`
-      this.query(sql, [id, count]).then(results => {
-        // 成功时的业务逻辑
-        resolve(results)
-      }).catch(err => {
-        // 失败时的业务逻辑
-        console.log(`获取上一组记录失败：${err.message}`)
-        // 将错误传递给中间件进行处理
-        reject(err)
-      })
-    })
-  }
-
-  /**
-   * 查询当前日期范围部位记录数据
-   * @param {string} startDate 起始日期
-   * @param {string} endDate 结束日期
-   */
   static getPartsByCale (startDate, endDate) {
     return new Promise((resolve, reject) => {
       // let sql = `SELECT * FROM record WHERE id = ?`
@@ -165,6 +143,30 @@ module.exports = class Record extends require('./model') {
       FROM record AS r, movement AS m
       WHERE r.move_id = m.id
       HAVING DATE_FORMAT(date, '%Y-%m-%d') BETWEEN ? AND ?`
+      this.query(sql, [startDate, endDate]).then(results => {
+        // 成功时的业务逻辑
+        resolve(results)
+      }).catch(err => {
+        // 失败时的业务逻辑
+        console.log(`获取记录失败：${err.message}`)
+        // 将错误传递给中间件进行处理
+        reject(err)
+      })
+    })
+  }
+
+  /**
+   * 查询当前日期范围容量数据
+   * @param {string} startDate 起始日期
+   * @param {string} endDate 结束日期
+   */
+   static getVolumesByCale (startDate, endDate) {
+    return new Promise((resolve, reject) => {
+      // let sql = `SELECT * FROM record WHERE id = ?`
+      let sql = `SELECT DATE_FORMAT(r.date, '%Y-%m-%d') AS date, SUM(volume) as volume
+      FROM record AS r
+      WHERE DATE_FORMAT(date, '%Y-%m-%d') BETWEEN ? AND ?
+      GROUP BY DATE_FORMAT(date, '%Y-%m-%d')`
       this.query(sql, [startDate, endDate]).then(results => {
         // 成功时的业务逻辑
         resolve(results)
@@ -236,7 +238,7 @@ module.exports = class Record extends require('./model') {
   }
 
   /**
-   * 查询日期对应的总容量
+   * 删除指定训练记录
    * @param {string} date 日期
    */
    static deleteRecordById (id) {
