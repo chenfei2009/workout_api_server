@@ -1,4 +1,5 @@
 # workout_api_server
+<<<<<<< HEAD
 ## 项目介绍
 
 为 workout 应用提供数据和接口支持
@@ -43,3 +44,6 @@ node app.js
 
 
 
+=======
+api server for web app workout
+>>>>>>> e1af42e0378be0e7df011745f6956ff1ed2a8b2d
